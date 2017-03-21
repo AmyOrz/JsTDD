@@ -74,11 +74,14 @@ this.sinon.createStubObj = function (args) {
     return a;
 };
 
+this.sinon.type = function(obj){
+}
 
 this.sinon.sandbox.createClass = this.sinon.createClass;
 this.sinon.sandbox.createObj = this.sinon.createObj;
 this.sinon.sandbox.createSpyObj = this.sinon.createSpyObj;
 this.sinon.sandbox.createStubObj = this.sinon.createStubObj;
+this.sinon.sandbox.type = this.sinon.type;
 
 
 ////增加YTester的Fake组件

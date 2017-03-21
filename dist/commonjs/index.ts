@@ -1,2 +1,2 @@
-export {ExportClass} from "./ExportClass";
-export {InnerClass} from "./InnerClass";
+export {FlatArr} from "./FlatArr";
+export {type} from "./Type";

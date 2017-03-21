@@ -11,14 +11,15 @@
 
     // list of files / patterns to load in the browser
     files: [
-        'dist/wd.js',
+        'dist/Amy.js',
+        'src/*.js',
 
         'test/helper/jasmine/**',
         'test/helper/sinonJs/*.js',
 
         'test/unit/**',
 
-        {pattern: 'dist/wd.js.map', watched: false, included: false, served: true, nocache:true}
+        {pattern: 'dist/Amy.js.map', watched: false, included: false, served: true, nocache:true}
     ],
 
 
