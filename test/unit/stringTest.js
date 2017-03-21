@@ -2,7 +2,7 @@ describe("flat array", function () {
 
     var arr = new Amy.FlatArr();
     var type = Amy.type;
-    
+
     beforeEach(function () {
 
     });
