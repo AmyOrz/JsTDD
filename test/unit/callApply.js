@@ -20,6 +20,9 @@ describe("call and apply and bind", function () {
             expect("yellow12").toEqual(apple.show.apply(banana,[1,2]));
         });
 
+        it("method bind should give the two param", function () {
+            expect("yellow12").toEqual(apple.show.bind(banana,[1,2]));
+        });
     });
     describe("number 没有max方法,所以我们借助call来求最大值",function () {
         it("当参数确定时使用call", function () {

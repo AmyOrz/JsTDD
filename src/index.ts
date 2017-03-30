@@ -1,2 +1,2 @@
-export { FlatArr } from "./FlatArr";
-export { type } from "./Type";
+export { FlatArr } from "./study/FlatArr";
+export { type } from "./study/Type";
