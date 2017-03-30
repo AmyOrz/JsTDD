@@ -3,6 +3,7 @@ describe("strfTime", function () {
     beforeEach(function () {
 
     });
+
     afterEach(function () {
 
     });
@@ -22,6 +23,7 @@ describe("strfTime", function () {
         });
         it("%F should return %y-%m-%d", function () {
             expect("2009-12-05").toEqual(date.strftime("%F"));
+
         });
     });
 });

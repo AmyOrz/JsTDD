@@ -2,9 +2,10 @@ describe("flat array", function () {
 
     var arr = new Amy.FlatArr();
     var type = Amy.type;
+    var sanbox = sinon.sandbox.create();
 
     beforeEach(function () {
-
+        console.log(sanbox.type([]))
     });
     afterEach(function () {
 

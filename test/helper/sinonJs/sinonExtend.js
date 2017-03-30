@@ -75,6 +75,7 @@ this.sinon.createStubObj = function (args) {
 };
 
 this.sinon.type = function(obj){
+    return {}.toString.call(obj).slice(8, -1);
 }
 
 this.sinon.sandbox.createClass = this.sinon.createClass;
