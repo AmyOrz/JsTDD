@@ -5,7 +5,7 @@ describe("flat array", function () {
     var sanbox = sinon.sandbox.create();
 
     beforeEach(function () {
-        console.log(sanbox.type([]))
+
     });
     afterEach(function () {
 
