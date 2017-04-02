@@ -12,6 +12,7 @@
     // list of files / patterns to load in the browser
     files: [
         'dist/Amy.js',
+        'src/*/*.js',
         'src/*.js',
 
         'test/helper/jasmine/**',
