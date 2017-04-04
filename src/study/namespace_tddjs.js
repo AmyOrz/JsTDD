@@ -40,6 +40,7 @@ var tddjs = (function () {
 
     function extend(target,source) {
         target = target || {};
+        if(source == void 0)return target;
         for(var prop in source){
             if(source.hasOwnProperty(prop)){
                 target[prop] = source[prop];

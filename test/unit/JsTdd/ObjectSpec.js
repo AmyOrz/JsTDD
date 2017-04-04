@@ -20,7 +20,15 @@ describe("Object operation",function () {
     });
 
     it("Object.extend 可以扩展对象上的属性",function () {
-
+        var obj = {
+            name:"arvin",
+            age:24
+        }
+        var newObj = {
+            address:"chengdu"
+        };
+        tddjs.extend(newObj,obj)
+        expect(newObj.name).toEqual("arvin")
     })
 
 });
