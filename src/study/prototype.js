@@ -3,7 +3,7 @@ var a = {
     eat:function (x) {
         return this.x+x;
     }
-}
+};
 
 var b  = {
     y:21,
@@ -28,3 +28,5 @@ people.prototype = a;
 
 var man = new people();
 man.eat(11);
+
+

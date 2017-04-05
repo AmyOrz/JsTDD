@@ -1,21 +1,38 @@
 var Observable = (function(){
 
-    function addObserver(observer) {
-        if(this.observers == void 0)this.observers = [];
+    function _observers(obser,event){
+        if(obser.observers == void 0)
+            obser.observers = {};
+
+        if(obser.observers[event] == void 0)
+            obser.observers[event] = [];
+
+        return obser.observers[event];
+    }
+
+    function addObserver(event,observer) {
         if(typeof observer != "function"){
             throw new TypeError("observer is not function");
         }
-        this.observers.push(observer);
+
+        var observers = _observers(this,event);
+        observers.push(observer);
     }
-    function hasObserver(observer) {
-        if(this.observers == void 0)return false;
-        return this.observers.indexOf(observer) > -1;
+    function hasObserver(event,observer) {
+        var observers = _observers(this,event);
+        if(observers == void 0)return false;
+
+        return observers.indexOf(observer) > -1;
     }
-    function notify() {
-        if(this.observers == void 0)return;
-        for(var i = 0;i<this.observers.length;i++){
+    function notify(event) {
+        var observers = _observers(this,event);
+        if(observers == void 0)return;
+
+        var arg = [].slice.call(arguments,1);
+
+        for(var i = 0;i<observers.length;i++){
             try {
-                this.observers[i].apply(this, arguments);
+                observers[i].apply(this, arg);
             }catch (e){
 
             }
