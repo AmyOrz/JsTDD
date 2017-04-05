@@ -38,6 +38,12 @@ var tddjs = (function () {
         }
     }
 
+    function F() {}
+    function create(obj) {
+        F.prototype = obj;
+        return new F();
+    }
+
     function extend(target,source) {
         target = target || {};
         if(source == void 0)return target;
@@ -52,7 +58,8 @@ var tddjs = (function () {
         namespace: namespace,
         uid:uid,
         iterator:iterator,
-        extend:extend
+        extend:extend,
+        create:create
     };
 })();
 

@@ -3,12 +3,10 @@ describe("observable 观察者模式",function () {
 
    beforeEach(function () {
 
-      observable = new tddJs.observable();
-      observable.observers = [];
-
-      observer1 = function (name) {console.log("obser1"+name)}
-      observer2 = function (name) {console.log("obser2")}
-      observer3 = function (name) {console.log("obser3"+name)}
+      observable = Object.create(Observable);
+      observer1 = function (name) {}
+      observer2 = function (name) {}
+      observer3 = function (name) {}
 
       observable.addObserver(observer1);
       observable.addObserver(observer3);
@@ -24,7 +22,24 @@ describe("observable 观察者模式",function () {
    
    it("提供notify(通知)Observers 方法调用每个观察者",function () {
 
-      observable.notifyObservers("fck");
+      var args = [];
+      observable.addObserver(function () {
+         args = [].slice.call(arguments);
+      })
+      observable.notify("fck",1,23,4);
 
+       expect(["fck",1,23,4]).toEqual(args)
+   });
+
+   it("当添加对象时addObserver无法解析",function () {
+       expect(function(){
+          var obj = {};
+          observable.addObserver(obj);
+       },"TypeError");
+
+      observable.addObserver(function () {
+         throw new Error("fck");
+      });
+      observable.notify();
    })
 });
