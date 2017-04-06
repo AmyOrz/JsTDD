@@ -7,7 +7,16 @@ var ajax = (function () {
 
         return xhr;
     }
+
+    function get(url) {
+        if(url == void 0)
+            return TypeError("url is not find");
+
+        var transport = ajax.create();
+        transport.open("GET",url,true);
+    }
     return {
-        create:create
+        create:create,
+        get:get
     }
 })();

@@ -17,6 +17,7 @@
 
         'test/helper/jasmine/**',
         'test/helper/sinonJs/*.js',
+        'test/helper/*.js',
 
         'test/unit/**',
 
