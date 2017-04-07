@@ -11,7 +11,11 @@ function stuFn(retVal) {
 
 var fakeHttpRequest = {
     open:stuFn(),
-    send:stuFn()
+    send:stuFn(),
+    readyStateChange:function (readyState) {
+        this.readyState = readyState;
+        this.onreadystatechange();
+    }
 };
 
 var isLocal = (function () {
@@ -20,3 +24,21 @@ var isLocal = (function () {
     }
     return local;
 })();
+
+function forceStateAndReadyState(xhr,status,res) {
+    var success = stuFn();
+    var failure = stuFn();
+
+    ajax.get("/url",{
+        success:success,
+        failure:failure
+    });
+
+    xhr.status = status;
+    xhr.readyStateChange(res);
+
+    return {
+        success:success.called,
+        failure:failure.called
+    }
+}

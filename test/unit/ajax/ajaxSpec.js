@@ -22,6 +22,7 @@ describe("ajax operation",function () {
 
       afterEach(function () {
          ajax.create = ajaxCrteate;
+         isLocal = stuFn(false);
       });
 
       it("该测试应该得到XMLHttpRequest对象",function () {
@@ -55,6 +56,14 @@ describe("ajax operation",function () {
           ajax.get("fck.txt",{success:success});
           xhr.onreadystatechange();
           expect(success.called).toBeTruthy();
+      })
+      it("test should call success handler for status 200",function () {
+         var request = forceStateAndReadyState(xhr,200,4);
+         expect(request.success).toBeTruthy();
+
+         isLocal = stuFn(true);
+         var request2 = forceStateAndReadyState(xhr,0,4);
+         expect(request2.success).toBeTruthy();
       })
    })
 });
