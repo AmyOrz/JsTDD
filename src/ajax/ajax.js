@@ -19,7 +19,7 @@ var ajax = (function () {
         transport.open("GET",url,true);
 
         transport.onreadystatechange = function () {
-            if(transport.readyState == 4 && transport.status == 200){
+            if(transport.readyState == 4 && (transport.status == 200 || (isLocal() && !transport.status))){
                 if(typeof options.success == "function") {
                     options.success(transport.responseText);
                 }

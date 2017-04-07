@@ -12,4 +12,11 @@ function stuFn(retVal) {
 var fakeHttpRequest = {
     open:stuFn(),
     send:stuFn()
-}
+};
+
+var isLocal = (function () {
+    function local() {
+        return !!(window.location && window.location.protocol.indexOf("file:") === 0);
+    }
+    return local;
+})();

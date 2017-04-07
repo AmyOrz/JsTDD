@@ -1,8 +1,4 @@
 describe("ajax operation",function () {
-   beforeEach(function () {
-
-   })
-
    it("create method should return XMLHttpRequest Object",function () {
       var xhr = ajax.create();
 
@@ -50,5 +46,15 @@ describe("ajax operation",function () {
 
          expect(success.called).toBeTruthy();
       });
+      it("测试是否为本地请求",function () {
+          xhr.readyState = 4;
+          xhr.status = 0;
+          var success = stuFn();
+          isLocal = stuFn(true);
+
+          ajax.get("fck.txt",{success:success});
+          xhr.onreadystatechange();
+          expect(success.called).toBeTruthy();
+      })
    })
 });
