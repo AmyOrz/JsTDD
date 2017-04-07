@@ -17,9 +17,11 @@ describe("ajax operation",function () {
    });
 
    describe("测试桩创建",function () {
-      var ajaxCrteate = null;
+      var ajaxCrteate,xhr;
       beforeEach(function () {
          ajaxCrteate = ajax.create;
+         xhr = Object.create(fakeHttpRequest);
+         ajax.create = stuFn(xhr);
       });
 
       afterEach(function () {
@@ -27,15 +29,26 @@ describe("ajax operation",function () {
       });
 
       it("该测试应该得到XMLHttpRequest对象",function () {
-         var openStub = stuFn();
-
-         ajax.create = stuFn({
-             open:openStub
-         });
          ajax.get("/url");
 
          expect(ajax.create.called).toBeTruthy();
-         expect(["GET","/url",true]).toEqual(openStub.args);
-      })
+         expect(["GET","/url",true]).toEqual(xhr.open.args);
+         expect(xhr.onreadystatechange).toBeFunction();
+
+      });
+      it("send方法应该被调用,传入参数null",function () {
+         ajax.get("/url");
+         expect(xhr.send.called).toBeTruthy();
+         expect(xhr.send.args[0]).toBeNull();
+      });
+      it("readystatechange handler test",function () {
+         xhr.readyState = 4;
+         xhr.status = 200;
+         var success = stuFn();
+         ajax.get("/url",{success:success});
+         xhr.onreadystatechange();
+
+         expect(success.called).toBeTruthy();
+      });
    })
 });

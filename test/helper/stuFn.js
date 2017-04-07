@@ -8,3 +8,8 @@ function stuFn(retVal) {
     fn.called = false;
     return fn;
 }
+
+var fakeHttpRequest = {
+    open:stuFn(),
+    send:stuFn()
+}

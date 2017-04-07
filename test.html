@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<script src = "./dist/Amy.js"></script>
+<!--<script src = "./dist/Amy.js"></script>-->
+<script src = "./src/ajax/ajax.js"></script>
+<script>
+    <!-- ajax集成测试 -->
+    ajax.get("gitPush.bash",{
+        success:function (xhr) {
+            console.log(xhr)
+        }
+    })
+</script>
 </body>
 </html>

@@ -8,12 +8,28 @@ var ajax = (function () {
         return xhr;
     }
 
-    function get(url) {
+    function get(url,options) {
         if(url == void 0)
             return TypeError("url is not find");
 
+        if(ajax.create == void 0)return;
+
+        options = options || {};
         var transport = ajax.create();
         transport.open("GET",url,true);
+
+        transport.onreadystatechange = function () {
+            if(transport.readyState == 4 && transport.status == 200){
+                if(typeof options.success == "function") {
+                    options.success(transport.responseText);
+                }
+            }else{
+                if(typeof options.error == "function") {
+                    options.error(transport.responseText);
+                }
+            }
+        };
+        transport.send(null);
     }
     return {
         create:create,
