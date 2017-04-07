@@ -1,16 +1,4 @@
-describe("ajax operation",function () {
-   it("create method should return XMLHttpRequest Object",function () {
-      var xhr = ajax.create();
-
-      expect(xhr.readyState).toBeNumber();
-
-      expect(xhr.open).toBeFunction();
-      expect(xhr.send).toBeFunction();
-      expect(xhr.setRequestHeader).toBeFunction();
-   })
-   it("request method 接受一个url参数",function () {
-      expect(ajax.request(),"TypeError");
-   });
+describe("ajax post operation",function () {
 
    describe("测试桩创建",function () {
       var ajaxCrteate,xhr;
@@ -26,10 +14,10 @@ describe("ajax operation",function () {
       });
 
       it("该测试应该得到XMLHttpRequest对象",function () {
-         ajax.request("/url");
+         ajax.request("/url",{method:"POST"});
 
          expect(ajax.create.called).toBeTruthy();
-         expect(["GET","/url",true]).toEqual(xhr.open.args);
+         expect(["POST","/url",true]).toEqual(xhr.open.args);
          expect(xhr.onreadystatechange).toBeFunction();
 
       });

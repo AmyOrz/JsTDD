@@ -8,7 +8,7 @@ var ajax = (function () {
         return xhr;
     }
 
-    function get(url,options) {
+    function request(url,options) {
         if(url == void 0)
             return TypeError("url is not find");
 
@@ -16,7 +16,7 @@ var ajax = (function () {
 
         options = options || {};
         var transport = ajax.create();
-        transport.open("GET",url,true);
+        transport.open(options.method ||"GET",url,true);
 
         transport.onreadystatechange = function () {
             if(transport.readyState == 4 && (transport.status == 200 || (isLocal() && !transport.status))){
@@ -33,6 +33,6 @@ var ajax = (function () {
     }
     return {
         create:create,
-        get:get
+        request:request
     }
 })();

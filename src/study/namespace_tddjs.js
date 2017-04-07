@@ -46,7 +46,7 @@ var tddjs = (function () {
 
     function extend(target,source) {
         target = target || {};
-        if(source == void 0)return target;
+        if(source == void 0 || isEmptyObject(source))return target;
         for(var prop in source){
             if(source.hasOwnProperty(prop)){
                 target[prop] = source[prop];
@@ -54,12 +54,17 @@ var tddjs = (function () {
         }
     }
 
+    function isEmptyObject(obj) {
+        for(var t in obj)
+            return !1;
+        return !0;
+    }
     return {
         namespace: namespace,
         uid:uid,
         iterator:iterator,
         extend:extend,
-        create:create
+        create:create,
+        isEmptyObject:isEmptyObject
     };
 })();
-

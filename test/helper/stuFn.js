@@ -29,7 +29,7 @@ function forceStateAndReadyState(xhr,status,res) {
     var success = stuFn();
     var failure = stuFn();
 
-    ajax.get("/url",{
+    ajax.request("/url",{
         success:success,
         failure:failure
     });
