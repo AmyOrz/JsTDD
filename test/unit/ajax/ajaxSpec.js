@@ -8,8 +8,8 @@ describe("ajax operation",function () {
       expect(xhr.send).toBeFunction();
       expect(xhr.setRequestHeader).toBeFunction();
    })
-   it("request method 接受一个url参数",function () {
-      expect(ajax.request(),"TypeError");
+   it("get method 接受一个url参数",function () {
+      expect(ajax.get(),"TypeError");
    });
 
    describe("测试桩创建",function () {
@@ -26,7 +26,7 @@ describe("ajax operation",function () {
       });
 
       it("该测试应该得到XMLHttpRequest对象",function () {
-         ajax.request("/url");
+         ajax.get("/url");
 
          expect(ajax.create.called).toBeTruthy();
          expect(["GET","/url",true]).toEqual(xhr.open.args);
@@ -34,7 +34,7 @@ describe("ajax operation",function () {
 
       });
       it("send方法应该被调用,传入参数null",function () {
-         ajax.request("/url");
+         ajax.get("/url");
          expect(xhr.send.called).toBeTruthy();
          expect(xhr.send.args[0]).toBeNull();
       });
@@ -42,7 +42,7 @@ describe("ajax operation",function () {
          xhr.readyState = 4;
          xhr.status = 200;
          var success = stuFn();
-         ajax.request("/url",{success:success});
+         ajax.get("/url",{success:success});
          xhr.onreadystatechange();
 
          expect(success.called).toBeTruthy();
@@ -53,7 +53,7 @@ describe("ajax operation",function () {
           var success = stuFn();
           isLocal = stuFn(true);
 
-          ajax.request("fck.txt",{success:success});
+          ajax.get("fck.txt",{success:success});
           xhr.onreadystatechange();
           expect(success.called).toBeTruthy();
       })

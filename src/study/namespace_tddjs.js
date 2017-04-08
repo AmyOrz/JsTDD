@@ -52,6 +52,7 @@ var tddjs = (function () {
                 target[prop] = source[prop];
             }
         }
+        return target;
     }
 
     function isEmptyObject(obj) {
@@ -59,12 +60,17 @@ var tddjs = (function () {
             return !1;
         return !0;
     }
+
+    function type(obj) {
+        return {}.toString.call(obj).slice(8, -1).toLowerCase();
+    }
     return {
         namespace: namespace,
         uid:uid,
         iterator:iterator,
         extend:extend,
         create:create,
-        isEmptyObject:isEmptyObject
+        isEmptyObject:isEmptyObject,
+        type:type
     };
 })();

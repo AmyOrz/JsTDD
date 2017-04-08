@@ -11,10 +11,10 @@ var FlatArr = (function () {
         var res = [];
         for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
             var item = arr_1[_i];
-            if (Type_1.type(item) == "Number") {
+            if (Type_1.type(item) == "number") {
                 res.push(item);
             }
-            else if (Type_1.type(item) == "Array") {
+            else if (Type_1.type(item) == "array") {
                 res = res.concat(this._flat(item));
             }
         }

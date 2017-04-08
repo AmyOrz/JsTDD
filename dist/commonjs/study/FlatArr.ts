@@ -11,11 +11,11 @@ export class FlatArr {
         var res: number[] = [];
         for (let item of arr) {
 
-            if (type(item) == "Number") {
+            if (type(item) == "number") {
 
                 res.push(item);
 
-            } else if (type(item) == "Array") {
+            } else if (type(item) == "array") {
 
                 res = res.concat(this._flat(item));
 

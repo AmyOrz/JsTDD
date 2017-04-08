@@ -17,26 +17,26 @@ describe("flat array", function () {
         });
     });
     describe("{}.toString get the type", function () {
-        it("[] type should be Array", function () {
-            expect("Array").toEqual(type([1,2,3]));
+        it("[] type should be array", function () {
+            expect("array").toEqual(type([1,2,3]));
         });
-        it("{} type should be Object", function () {
-            expect("Object").toEqual(type({a:123}));
+        it("{} type should be object", function () {
+            expect("object").toEqual(type({a:123}));
         });
-        it("'asd' type should be String", function () {
-            expect("String").toEqual(type("asd"));
+        it("'asd' type should be string", function () {
+            expect("string").toEqual(type("asd"));
         });
-        it("123 type should be Number", function () {
-            expect("Number").toEqual(type(123));
+        it("123 type should be number", function () {
+            expect("number").toEqual(type(123));
         });
-        it("true type should be Boolean", function () {
-            expect("Boolean").toEqual(type(true));
+        it("true type should be boolean", function () {
+            expect("boolean").toEqual(type(true));
         });
-        it("null type should be Null", function () {
-            expect("Null").toEqual(type(null));
+        it("null type should be null", function () {
+            expect("null").toEqual(type(null));
         });
-        it("undefined type should be Undefined", function () {
-            expect("Undefined").toEqual(type(undefined));
+        it("undefined type should be undefined", function () {
+            expect("undefined").toEqual(type(undefined));
         });
     });
 });

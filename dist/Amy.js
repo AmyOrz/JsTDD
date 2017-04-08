@@ -5,7 +5,7 @@
 }(this, (function (exports) { 'use strict';
 
 	function type(obj) {
-	    return {}.toString.call(obj).slice(8, -1);
+	    return {}.toString.call(obj).slice(8, -1).toLowerCase();
 	}
 
 	var FlatArr = (function () {
@@ -18,10 +18,10 @@
 	        var res = [];
 	        for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
 	            var item = arr_1[_i];
-	            if (type(item) == "Number") {
+	            if (type(item) == "number") {
 	                res.push(item);
 	            }
-	            else if (type(item) == "Array") {
+	            else if (type(item) == "array") {
 	                res = res.concat(this._flat(item));
 	            }
 	        }

@@ -28,7 +28,7 @@ describe("Object operation",function () {
                 console.log(xhr)
             }
         };
-        tddjs.extend(newObj,obj)
+        newObj = tddjs.extend(newObj,obj)
         expect(newObj.method).toEqual("GET")
     })
 });

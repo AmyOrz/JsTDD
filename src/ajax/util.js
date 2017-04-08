@@ -12,6 +12,12 @@ function stuFn(retVal) {
 var fakeHttpRequest = {
     open:stuFn(),
     send:stuFn(),
+    setRequestHeader:function (header,val) {
+        if(this.headers == void 0){
+            this.headers = {};
+        }
+        this.headers[header] = val;
+    },
     readyStateChange:function (readyState) {
         this.readyState = readyState;
         this.onreadystatechange();
