@@ -9,7 +9,7 @@ function stuFn(retVal) {
     return fn;
 }
 
-var fakeHttpRequest = {
+var pollerHttpRequest = {
     open:stuFn(),
     send:stuFn(),
     setRequestHeader:function (header,val) {
@@ -23,6 +23,36 @@ var fakeHttpRequest = {
         this.onreadystatechange();
     }
 };
+var postHttpRequest = {
+    open:stuFn(),
+    send:stuFn(),
+    setRequestHeader:function (header,val) {
+        if(this.headers == void 0){
+            this.headers = {};
+        }
+        this.headers[header] = val;
+    },
+    readyStateChange:function (readyState) {
+        this.readyState = readyState;
+        this.onreadystatechange();
+    },
+    name:111
+};
+var getHttpRequest = {
+    open:stuFn(),
+    send:stuFn(),
+    setRequestHeader:function (header,val) {
+        if(this.headers == void 0){
+            this.headers = {};
+        }
+        this.headers[header] = val;
+    },
+    readyStateChange:function (readyState) {
+        this.readyState = readyState;
+        this.onreadystatechange();
+    },
+    name:111
+};
 
 var isLocal = (function () {
     function local() {
@@ -31,20 +61,3 @@ var isLocal = (function () {
     return local;
 })();
 
-function forceStateAndReadyState(xhr,status,res) {
-    var success = stuFn();
-    var failure = stuFn();
-
-    ajax.request("/url",{
-        success:success,
-        failure:failure
-    });
-
-    xhr.status = status;
-    xhr.readyStateChange(res);
-
-    return {
-        success:success.called,
-        failure:failure.called
-    }
-}

@@ -5,7 +5,7 @@ describe("ajax post operation",function () {
       var urlParam;
       beforeEach(function () {
          ajaxCrteate = ajax.create;
-         xhr = Object.create(fakeHttpRequest);
+         xhr = tddjs.create(postHttpRequest);
          ajax.create = stuFn(xhr);
 
          urlParam = ajax.urlParams;

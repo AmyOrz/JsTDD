@@ -39,9 +39,12 @@ var ajax = (function () {
                     options.success(transport.responseText);
                 }
             }else{
-                if(typeof options.error == "function") {
-                    options.error(transport.responseText);
+                if(typeof options.failure == "function") {
+                    options.failure(transport.responseText);
                 }
+            }
+            if(tddjs.type(options.complete) == "function"){
+                options.complete(transport.responseText);
             }
         };
         transport.send(options.data);
