@@ -30,15 +30,14 @@ describe("ajax operation",function () {
    });
 
    describe("测试桩创建",function () {
-      var ajaxCrteate,xhr;
+      var xhr;
       beforeEach(function () {
-         ajaxCrteate = ajax.create;
          xhr = tddjs.create(getHttpRequest);
-         ajax.create = stuFn(xhr);
+         sinon.stub(ajax,"create").returns(xhr);
       });
 
       afterEach(function () {
-         ajax.create = ajaxCrteate;
+         ajax.create.restore();
          isLocal = stuFn(false);
       });
 

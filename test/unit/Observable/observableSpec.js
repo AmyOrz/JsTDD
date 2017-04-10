@@ -4,9 +4,9 @@ describe("observable 观察者模式",function () {
    beforeEach(function () {
 
       observable = Object.create(Observable);
-      observer1 = function (name) {}
-      observer2 = function (name) {}
-      observer3 = function (name) {}
+      observer1 = sinon.stub();
+      observer2 = sinon.stub();
+      observer3 = sinon.stub();
 
       observable.addObserver("click",observer1);
       observable.addObserver("mousedown",observer3);
@@ -28,7 +28,9 @@ describe("observable 观察者模式",function () {
       })
       observable.notify("click","fck",1,23,4);
 
-       expect(["fck",1,23,4]).toEqual(args)
+      expect(["fck",1,23,4]).toEqual(args)
+      expect(observer1.called).toBeTruthy();
+      expect(observer2.called).toBeFalsy();
    });
 
    it("当添加对象时addObserver无法解析",function () {

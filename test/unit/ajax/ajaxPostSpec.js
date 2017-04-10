@@ -1,20 +1,39 @@
 describe("ajax post operation",function () {
 
-   describe("测试桩创建",function () {
-      var ajaxCrteate,xhr;
-      var urlParam;
+   describe("模拟对象",function () {
+      var xhr;
       beforeEach(function () {
-         ajaxCrteate = ajax.create;
          xhr = tddjs.create(postHttpRequest);
-         ajax.create = stuFn(xhr);
-
-         urlParam = ajax.urlParams;
+         // sinon.stub(ajax,"create").returns(xhr);
       });
 
       afterEach(function () {
-         ajax.create = ajaxCrteate;
+         ajax.create.restore();
+      });
 
-         ajax.urlParams = urlParam;
+      it("创建ajax的模拟对象，期望urlParams方法接受参数并被调用一次",function () {
+         var obj = {name:"arvin",age:24};
+         var mock = sinon.mock(ajax);
+         mock.expects("create").returns(xhr);
+         mock.expects("urlParams").withArgs(obj).returns();
+
+         ajax.post("/url",{data:obj});
+      })
+   });
+
+   describe("测试桩创建",function () {
+      var xhr;
+      beforeEach(function () {
+         xhr = tddjs.create(postHttpRequest);
+         sinon.stub(ajax,"create").returns(xhr);
+         sinon.stub(ajax,"urlParams").returns();
+
+      });
+
+      afterEach(function () {
+
+         ajax.create.restore();
+         ajax.urlParams.restore();
       });
 
       it("该测试应该得到XMLHttpRequest对象",function () {
@@ -25,16 +44,18 @@ describe("ajax post operation",function () {
          expect(xhr.onreadystatechange).toBeFunction();
 
       });
+
       it("test should encode data",function () {
-         ajax.urlParams = stuFn();
          var obj = {name:"arvin",age:24};
          ajax.post("/url",{data:obj});
-         expect(obj).toEqual(ajax.urlParams.args[0]);
-      })
+
+         expect(ajax.urlParams.calledWith(obj)).toBeTruthy();
+      });
+
       it("test should send data on URL for GET",function () {
          var url = "/url";
          var obj = {name:"arvin",age:24};
-         var expects = url + "?" + urlParam(obj);
+         var expects = url + "?" + ajax.urlParams(obj);
          ajax.get(url,{data:obj});
 
          expect(expects).toEqual(xhr.open.args[1]);
