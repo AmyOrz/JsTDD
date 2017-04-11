@@ -2,20 +2,24 @@ describe("ajax post operation",function () {
 
    describe("模拟对象",function () {
       var xhr;
+
       beforeEach(function () {
          xhr = tddjs.create(postHttpRequest);
-         // sinon.stub(ajax,"create").returns(xhr);
       });
 
       afterEach(function () {
+
          ajax.create.restore();
+         ajax.urlParams.restore();
+
       });
 
       it("创建ajax的模拟对象，期望urlParams方法接受参数并被调用一次",function () {
          var obj = {name:"arvin",age:24};
          var mock = sinon.mock(ajax);
          mock.expects("create").returns(xhr);
-         mock.expects("urlParams").withArgs(obj).returns();
+         // mock.expects("create").once().returns(xhr);
+         mock.expects("urlParams").withArgs(obj);
 
          ajax.post("/url",{data:obj});
       })
@@ -26,7 +30,7 @@ describe("ajax post operation",function () {
       beforeEach(function () {
          xhr = tddjs.create(postHttpRequest);
          sinon.stub(ajax,"create").returns(xhr);
-         sinon.stub(ajax,"urlParams").returns();
+         sinon.stub(ajax,"urlParams");
 
       });
 

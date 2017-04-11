@@ -6,7 +6,7 @@ describe("observable 观察者模式",function () {
       observable = Object.create(Observable);
       observer1 = sinon.stub();
       observer2 = sinon.stub();
-      observer3 = sinon.stub();
+      observer3 = sinon.mock();
 
       observable.addObserver("click",observer1);
       observable.addObserver("mousedown",observer3);
@@ -25,7 +25,8 @@ describe("observable 观察者模式",function () {
       var args = [];
       observable.addObserver("click",function () {
          args = [].slice.call(arguments);
-      })
+      });
+
       observable.notify("click","fck",1,23,4);
 
       expect(["fck",1,23,4]).toEqual(args)
@@ -36,12 +37,10 @@ describe("observable 观察者模式",function () {
    it("当添加对象时addObserver无法解析",function () {
        expect(function(){
           var obj = {};
-          observable.addObserver("click",obj);
+          observable.addObserver("click",{});
        },"TypeError");
 
-      observable.addObserver("click",function () {
-         throw new Error("fck");
-      });
-      observable.notify();
+      observable.addObserver("click",sinon.mock().throwsException("what fck"));
+      observable.notify("click");
    })
 });
